@@ -1,12 +1,6 @@
-## Architecture
-
-![Aegis Deploy Architecture](Explainer.png)
-
----
-
 ## Restaurant Analogy
-
 ![Restaurant Analogy](RestaurantAnalogy.png)
+
 # Aegis-Deploy
 Production-Style AWS Deployment Platform for Safe Rollouts
 Aegis-Deploy is a Terraform-based cloud infrastructure project that simulates how modern companies safely deploy new application versions using canary releases and A/B testing.
@@ -33,11 +27,9 @@ This enables:
 • Gradual promotion to production
 • Safe rollback if issues occur
 
-System Architecture
+## Architecture
 
-Add your architecture image here.
-
-/docs/architecture.png
+![Aegis Deploy Architecture](Explainer.png)
 
 Example flow:
 
