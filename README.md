@@ -1,180 +1,81 @@
-## Architecture
-
-![Aegis Deploy Architecture](Explainer.png)
-
----
-
-## Restaurant Analogy
-
-![Restaurant Analogy](RestaurantAnalogy.png)
-
 # Aegis-Deploy
-Production-Style AWS Deployment Platform for Safe Rollouts
-Aegis-Deploy is a Terraform-based cloud infrastructure project that simulates how modern companies safely deploy new application versions using canary releases and A/B testing.
 
-The platform provisions a multi-AZ AWS environment running three isolated ECS/Fargate services behind an Application Load Balancer with weighted traffic routing.
+Production-Style AWS Deployment Platform for Safe Rollouts
+
+Aegis-Deploy is a Terraform-based cloud infrastructure project designed to simulate how modern companies safely deploy new application versions using **canary deployments and A/B testing**.
+
+The platform provisions a **multi-AZ AWS environment running three isolated ECS/Fargate services behind an Application Load Balancer with weighted traffic routing.**
 
 This allows safe experimentation with new versions while protecting production traffic.
 
-Architecture Overview
+---
 
-The system runs three application versions simultaneously:
+# Architecture
 
-Service	Traffic	Purpose
-Production	90%	Stable version
-Candidate A	5%	Experimental release
-Candidate B	5%	Experimental release
+![Aegis Deploy Architecture](Architecture.png)
 
-The Application Load Balancer distributes requests across services using weighted routing.
+The architecture uses AWS ECS with Fargate to run containerized applications across multiple availability zones.
 
-This enables:
+Traffic is distributed using an Application Load Balancer that can dynamically shift traffic between service versions.
 
-• Canary deployments
-• A/B testing
-• Gradual promotion to production
-• Safe rollback if issues occur
+This architecture demonstrates a **safe deployment strategy used by modern cloud platforms.**
 
-## Architecture
+---
 
-![Aegis Deploy Architecture](Explainer.png)
+# Restaurant Analogy
 
-Example flow:
+![Restaurant Analogy](RestaurantAnalogy.png)
 
-Internet
-   │
-   ▼
-Application Load Balancer
-   │
-   ├── 90% → Production Service
-   │
-   ├── 5% → Candidate A
-   │
-   └── 5% → Candidate B
-Infrastructure Stack
+Imagine a restaurant testing new recipes.
 
-The platform is built entirely using Infrastructure-as-Code.
+Customers enter through a host who directs most people to the **main kitchen**, while sending a small number to **experimental kitchens** testing new dishes.
 
-Cloud Services
+Traffic distribution might look like this:
 
-• AWS VPC (Multi-AZ)
-• AWS ECS (Fargate)
-• AWS Application Load Balancer
-• AWS CloudWatch
-• AWS IAM
+| Service | Traffic | Purpose |
+|-------|-------|-------|
+| Production | 90% | Stable application version |
+| Candidate A | 5% | Experimental deployment |
+| Candidate B | 5% | Experimental deployment |
 
-DevOps Tools
+If a new version performs well, traffic can gradually shift toward it.
 
-• Terraform
-• Docker
-• GitHub Actions (planned)
+If something fails, traffic can instantly revert to production.
 
-Terraform Project Structure
-aegis-deploy
-│
-├── modules
-│   ├── network
-│   ├── alb
-│   ├── ecs
-│   └── observability
-│
-├── environments
-│   ├── dev
-│   └── prod
-│
-├── docs
-│   └── architecture.png
-│
-└── app
-    ├── Dockerfile
-    └── app.py
+---
 
-This modular structure allows environments to be created quickly while maintaining consistent infrastructure patterns.
+# Key Architecture Concepts Demonstrated
 
-Key Architecture Concepts Demonstrated
-Infrastructure-as-Code
+This project demonstrates several important cloud architecture concepts:
 
-All infrastructure is provisioned using Terraform modules.
+- Infrastructure-as-Code using Terraform
+- Multi-AZ VPC architecture
+- ECS container orchestration
+- Application Load Balancer traffic routing
+- Canary deployments
+- A/B testing
+- Observability using CloudWatch
 
-Network Segmentation
+These techniques are commonly used in production systems to reduce deployment risk.
 
-The VPC includes:
+---
 
-• Public subnets (ALB)
-• Private subnets (ECS tasks)
-• NAT gateway for outbound access
+# Infrastructure Stack
 
-Safe Deployment Strategy
+Cloud Services:
 
-Weighted routing allows incremental rollout of new versions.
+- AWS VPC
+- AWS ECS (Fargate)
+- AWS Application Load Balancer
+- AWS IAM
+- AWS CloudWatch
 
-This is similar to strategies used by companies like:
+DevOps Tools:
 
-• Amazon
-• Netflix
-• Spotify
+- Terraform
+- Docker
+- GitHub
 
-Example Deployment Scenario
+---
 
-A new feature is deployed to Candidate A.
-
-Traffic distribution:
-
-Production      90%
-Candidate A      5%
-Candidate B      5%
-
-If metrics look good:
-
-Production      50%
-Candidate A     50%
-
-Then eventually:
-
-Production → replaced by Candidate A
-Observability
-
-Each service publishes logs and metrics to CloudWatch.
-
-Monitoring includes:
-
-• Request latency
-• Error rates
-• Health checks
-• Container logs
-
-This allows real-time comparison between production and experimental releases.
-
-Roadmap
-
-Planned enhancements:
-
-• CI/CD pipeline (GitHub Actions → ECR → ECS)
-• HTTPS via ACM
-• AWS WAF integration
-• Auto-scaling policies
-• Blue/Green deployments
-• Deployment rollback automation
-
-Learning Objectives
-
-This project was built while preparing for the AWS Solutions Architect Associate certification.
-
-Focus areas include:
-
-• Cloud networking design
-• container orchestration
-• deployment safety strategies
-• infrastructure automation
-• observability
-
-The goal is to develop practical cloud architecture experience, not just certification knowledge.
-
-Author
-
-Michael Hundelt
-Cloud Architecture Development Project
-2026
-
-⭐ If you found this useful
-
-Feel free to star the repo or connect with me on LinkedIn.
+# Project Structure
