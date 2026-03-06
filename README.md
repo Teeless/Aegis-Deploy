@@ -1,4 +1,11 @@
+## Architecture
+
+![Aegis Deploy Architecture](Explainer.png)
+
+---
+
 ## Restaurant Analogy
+
 ![Restaurant Analogy](RestaurantAnalogy.png)
 
 # Aegis-Deploy
