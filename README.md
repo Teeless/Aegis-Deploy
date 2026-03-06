@@ -1,8 +1,8 @@
 # Aegis-Deploy
 
-Production-Style AWS Deployment Platform for Safe Rollouts
+Production-Style AWS ECS/Fargate Deployment Platform for Safe Rollouts
 
-Aegis-Deploy is a Terraform-based cloud infrastructure project designed to simulate how modern companies safely deploy new application versions using **canary deployments and A/B testing**.
+Terraform-based cloud architecture project demonstrating canary deployments and A/B testing using weighted Application Load Balancer routing.
 
 The platform provisions a **multi-AZ AWS environment running three isolated ECS/Fargate services behind an Application Load Balancer with weighted traffic routing.**
 
@@ -78,4 +78,108 @@ DevOps Tools:
 
 ---
 
+# Deployment Strategy
+
+Aegis-Deploy models a safe deployment strategy commonly used in production cloud systems.
+
+Instead of replacing the production application immediately, new versions are introduced gradually.
+
+Traffic is distributed using weighted routing:
+
+Production → 90%  
+Candidate A → 5%  
+Candidate B → 5%
+
+This allows teams to observe performance and reliability before promoting a new version to production.
+
+---
+
 # Project Structure
+
+```
+aegis-deploy
+│
+├── Architecture.png
+├── RestaurantAnalogy.png
+├── README.md
+└── LICENSE
+```
+
+
+In a full implementation, Terraform modules would typically be organized like:
+
+
+Example Terraform module structure:
+
+```
+modules/
+  network/
+  alb/
+  ecs/
+  observability/
+```
+
+
+---
+
+# Example Deployment Scenario
+
+A new version of the application is deployed to **Candidate A**.
+
+Traffic distribution:
+
+
+Production      90%
+Candidate A      5%
+Candidate B      5%
+
+
+If performance metrics look good:
+
+
+Production      50%
+Candidate A     50%
+
+
+Eventually Candidate A can become the new Production release.
+
+---
+
+# Future Enhancements
+
+Potential improvements to the platform include:
+
+- CI/CD pipeline with GitHub Actions
+- Automated traffic shifting
+- Blue/Green deployments
+- WAF integration
+- Auto-scaling policies
+- Deployment rollback automation
+
+---
+
+# Learning Objectives
+
+This project was built while preparing for the **AWS Solutions Architect Associate certification**.
+
+The goal is to develop hands-on understanding of:
+
+- cloud architecture design
+- deployment safety strategies
+- infrastructure automation
+- container orchestration
+- observability and monitoring
+
+---
+
+# Author
+
+Michael Hundelt  
+Cloud Architecture Development Project  
+2026
+
+---
+
+# License
+
+MIT License
