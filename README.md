@@ -182,6 +182,17 @@ Additional architecture and implementation notes can be found in the `docs` fold
 
 ---
 
+# Terraform Scaffolding
+
+A minimal Terraform module structure is included to illustrate how the Aegis-Deploy infrastructure could be organized in a production environment.
+
+See:
+
+terraform/modules
+terraform/environments
+
+---
+
 # Author
 
 Michael Hundelt  
