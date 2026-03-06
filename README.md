@@ -172,6 +172,16 @@ The goal is to develop hands-on understanding of:
 
 ---
 
+# Documentation
+
+Additional architecture and implementation notes can be found in the `docs` folder:
+
+- Infrastructure Scaffold
+- Deployment Flow
+- Terraform Module Structure
+
+---
+
 # Author
 
 Michael Hundelt  
