@@ -24,7 +24,7 @@ This architecture demonstrates a **safe deployment strategy used by modern cloud
 
 # Restaurant Analogy
 
-![Restaurant Analogy](Restaurant Analogy.png)
+![Restaurant Analogy](RestaurantAnalogy.png)
 
 Imagine a restaurant testing new recipes.
 
